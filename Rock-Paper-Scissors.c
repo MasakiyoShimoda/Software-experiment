@@ -47,7 +47,10 @@ int main(int argc, const char * argv[]) {
 }
 
 int match(){
-    return judge(setPlayerHand(), setComputerHand());
+    int i, j;
+    i = setPlayerHand();
+    j = setComputerHand();
+    return judge(i, j);
 }
 
 int setPlayerHand(){
