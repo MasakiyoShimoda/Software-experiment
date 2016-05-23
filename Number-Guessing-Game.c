@@ -1,6 +1,6 @@
 //
 //  main.c
-//  Number-Guessing-Game
+//  Number guessing game
 //
 //  Created by 下田将斉 on 2016/05/18.
 //  Copyright © 2016年 Masakiyo Shimoda. All rights reserved.
@@ -18,7 +18,7 @@ int score(int, int);
 int setPlayerNum();
 int setComputerNum();
 int selectPlayerNum();
-int selectVomputerNum();
+int selectComputerNum(int);
 int matchingPvC(int, int);
 int matchingCvP(int, int);
 int game();
@@ -83,13 +83,22 @@ int selectPlayerNum(){
     return selectedPlayerNum;
 }
 
-int selectComputerNum(){
-    int selectedComputerNum = 0;
+int selectComputerNum(level){
+    int selectedComputerNum = 0, tmp;
     srand((unsigned int)time(NULL));
-    while(selectedComputerNum == 0)
-        selectedComputerNum = rand()%20;
-    printf("コンピューターはあなたの数字を%dだと予測しました\n", selectedComputerNum);
-    
+    if(level == 0){
+        while(selectedComputerNum == 0)
+            selectedComputerNum = tmp = rand()%20;
+        printf("コンピューターはあなたの数字を%dだと予測しました\n", selectedComputerNum);
+    }else if(level == 5){
+        while(selectedComputerNum <= tmp || selectedComputerNum == 0)
+            selectedComputerNum = rand()%20;
+        printf("コンピューターはあなたの数字を%dだと予測しました\n", selectedComputerNum);
+    }else if(level == 6){
+        while(selectedComputerNum >= tmp || selectedComputerNum == 0)
+            selectedComputerNum = rand()%20;
+        printf("コンピューターはあなたの数字を%dだと予測しました\n", selectedComputerNum);
+    }
     return selectedComputerNum;
 }
 
@@ -111,21 +120,23 @@ int matchingCvP(int num1, int num2){
     if(num1 == num2){
         printf("あなたの負けです\n");
         return COMPUTER_WIN;
-    }
-        return -1;
+    }else if(num1 < num2){
+        return OVER_VALUE;
+    }else if(num1 > num2)
+        return UNDER_VALUE;
+    return -1;
 }
 
 int game(){
-    int result, i, j, k, l;
+    int result, level = 0, i, j, k, l;
     j = setComputerNum();
     k = setPlayerNum();
     do{
         i = selectPlayerNum();
         result = matchingPvC(i, j);
-        
-        l = selectComputerNum();
-        result = matchingCvP(k, l);
-    }while(result != 4 && result != 7);
+        l = selectComputerNum(level);
+        result = level = matchingCvP(k, l);
+    }while (result != 4 && result != 7);
     
     return result;
 }
