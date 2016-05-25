@@ -87,17 +87,25 @@ int selectComputerNum(level){
     int selectedComputerNum = 0, tmp;
     srand((unsigned int)time(NULL));
     if(level == 0){
+		printf("a^\n");
         while(selectedComputerNum == 0)
-            selectedComputerNum = tmp = rand()%20;
+            selectedComputerNum = rand()%20;
         printf("コンピューターはあなたの数字を%dだと予測しました\n", selectedComputerNum);
+		tmp = selectedComputerNum;
     }else if(level == 5){
-        while(selectedComputerNum <= tmp || selectedComputerNum == 0)
-            selectedComputerNum = rand()%20;
+		printf("b^\n");
+        while(selectedComputerNum >= tmp && selectedComputerNum == 0)
+            selectedComputerNum  = rand()%20;
         printf("コンピューターはあなたの数字を%dだと予測しました\n", selectedComputerNum);
+		tmp = selectedComputerNum;
     }else if(level == 6){
-        while(selectedComputerNum >= tmp || selectedComputerNum == 0)
-            selectedComputerNum = rand()%20;
+		printf("c^\n");
+        while(selectedComputerNum <= tmp && selectedComputerNum == 0){
+            selectedComputerNum  = rand()%20;
+			printf("d^\n");
+		}
         printf("コンピューターはあなたの数字を%dだと予測しました\n", selectedComputerNum);
+		tmp = selectedComputerNum;
     }
     return selectedComputerNum;
 }
@@ -128,15 +136,18 @@ int matchingCvP(int num1, int num2){
 }
 
 int game(){
-    int result, level = 0, i, j, k, l;
+    int result1, result2, level = 0, i, j, k, l;
     j = setComputerNum();
     k = setPlayerNum();
     do{
         i = selectPlayerNum();
-        result = matchingPvC(i, j);
+        result1 = matchingPvC(i, j);
         l = selectComputerNum(level);
-        result = level = matchingCvP(k, l);
-    }while (result != 4 && result != 7);
-    
-    return result;
+        result2 =  matchingCvP(k, l);
+		level = result2;
+    }while (result1 != 4 && result2 != 7);
+	if(result1 == 4) 
+		return result1;
+	else if(result2 == 7)
+		return result2;
 }
