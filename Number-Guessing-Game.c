@@ -69,7 +69,7 @@ int setComputerNum(){
     srand((unsigned int)time(NULL));
     while(computerNum == 0)
         computerNum = rand()%20;
-    printf("コンピューターが数字を選びました\n%d(普通は見えないけど確認用)\n", computerNum);
+    printf("コンピューターが数字を選びました\n");
     
     return computerNum;
 }
