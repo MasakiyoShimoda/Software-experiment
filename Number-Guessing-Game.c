@@ -87,22 +87,18 @@ int selectComputerNum(level){
     int selectedComputerNum = 0, tmp;
     srand((unsigned int)time(NULL));
     if(level == 0){
-		printf("a^\n");
         while(selectedComputerNum == 0)
             selectedComputerNum = rand()%20;
         printf("コンピューターはあなたの数字を%dだと予測しました\n", selectedComputerNum);
 		tmp = selectedComputerNum;
     }else if(level == 5){
-		printf("b^\n");
         while(selectedComputerNum >= tmp && selectedComputerNum == 0)
             selectedComputerNum  = rand()%20;
         printf("コンピューターはあなたの数字を%dだと予測しました\n", selectedComputerNum);
 		tmp = selectedComputerNum;
     }else if(level == 6){
-		printf("c^\n");
         while(selectedComputerNum <= tmp && selectedComputerNum == 0){
             selectedComputerNum  = rand()%20;
-			printf("d^\n");
 		}
         printf("コンピューターはあなたの数字を%dだと予測しました\n", selectedComputerNum);
 		tmp = selectedComputerNum;
