@@ -13,32 +13,34 @@ int setPlayerHand();
 int setComputerHand();
 int judge(int playerHand, int computerHand);
 int match();
-int score(int, int, int);
+int score(int, int);
 
 int main(int argc, const char * argv[]) {
-    int start = 0, win = 0, lose = 0, draw = 0;
+    int mat, start = 0, win = 0, lose = 0;
     do{
         printf("\nじゃんけんをする:1\n成績を見る:2\nゲームを終わる:3\n>>");
         scanf("%d", &start);
         switch(start){
             case 1:
-                switch(match()){
-                    case 3:
-                        printf("あなたの勝ちです\n");
-                        win++;
-                        break;
-                    case 4:
-                        printf("あなたの負けです\n");
-                        lose++;
-                        break;
-                    case 5:
-                        printf("引き分けです\n");
-                        draw++;
-                        break;
-                }
+				do{
+					mat = match();
+					switch(mat){
+						case 3:
+							printf("あなたの勝ちです\n");
+							win++;
+							break;
+						case 4:
+							printf("あなたの負けです\n");
+							lose++;
+							break;
+						case 5:
+							printf("あいこです\n");
+							break;
+					}
+				}while(mat == 5);
                 break;
             case 2:
-                score(win, lose, draw);
+                score(win, lose);
                 break;
             case 3:
                 return 0;
@@ -61,6 +63,17 @@ int setPlayerHand(){
         printf("正しくない数値です \nもう1度選びなおしてください : ");
         scanf("%d", &playerHand);
     }
+	switch(playerHand){
+		case 0:
+			printf("あなたの手はグーです\n");
+			break;
+		case 1:
+			printf("あなたの手はチョキです\n");
+			break;
+		case 2:
+			printf("あなたの手はパーです\n");
+			break;
+	}
     return playerHand;
 }
 
@@ -88,9 +101,9 @@ int judge(int playerHnad, int computerHand){
     return judgement;
 }
 
-int score(win, lose, draw){
+int score(win, lose){
     int i = 0;
-    printf("勝ち:%d\n負け:%d\n引き分け:%d\n", win, lose, draw);
+    printf("勝ち:%d\n負け:%d\n", win, lose);
     printf("戻るにはなにか数字を押してください\n>>");
     scanf("%d",&i);
     return i;
