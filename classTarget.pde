@@ -1,10 +1,10 @@
 Target t;
 int count;
 void setup(){
+  smooth();
   frameRate(30);
   size(900, 600, P3D);
   t = new Target();
-  t.set();
   b = new Ball();
 }
 
@@ -17,6 +17,7 @@ void draw(){
   count++;
   if(count == 60 * 20)
     count = 0;
+  dist(x, y, xPoint, yPoint);
 }
 
 class Target{
@@ -25,14 +26,16 @@ class Target{
   float[] x = new float[21];
   float[] y = new float[21];
   
-  void set(){   //Set 20 point on random
-    for(int u = 0; u < 20; u++){  
+  Target(){   //Set 20 point on random
+    for(int u = 0; u < 20; u++){
       x[u] = random(800) + 30;
       y[u] = random(500) + 30;
+
     }
     x[20] = x[0];
     y[20] = y[0];
   }
+  
   void setPoint(){
     for(int j = 0; j < 21; j++){
       strokeWeight(5);
@@ -54,6 +57,6 @@ class Target{
     xPoint += xDeff;
     yPoint += yDeff;
 
-    ellipse(xPoint, yPoint, 20, 20);
+    ellipse(xPoint, yPoint, 50, 50);
   }
 }
