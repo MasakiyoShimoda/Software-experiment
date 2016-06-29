@@ -29,7 +29,7 @@ class Ball {
   // 現在位置を更新する関数
   void update(){
     t = millis() / 1000.0;
-    y = v * t * t;
+    y = v * t;
    }
 }
 
