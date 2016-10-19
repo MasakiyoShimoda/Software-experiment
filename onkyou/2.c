@@ -12,9 +12,9 @@ int main(int argc, const char * argv[]) {
     
     for (t = 0; t < LEN; t += 1.0 / SAMPLE_RATE) {
         if((A * sin(2.0 * M_PI * F * t)) > 0)
-            y = A;
+            y = A-(t*A/LEN);
         else
-            y = -A;
+            y = -A+(t*A/LEN)
         printf("%d\n%d\n"  ,  (short)y, (short)y);
     }
     
