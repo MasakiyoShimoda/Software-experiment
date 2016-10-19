@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <time.h>
 
 #define F 440 //周波数
 #define LEN 2
@@ -10,8 +9,6 @@
 
 int main(int argc, const char * argv[]) {
     double y, t;
-    
-    srandom( (unsigned int)time(NULL) );
     
     for (t = 0; t < LEN; t += 1.0 / SAMPLE_RATE) {
         if((A * sin(2.0 * M_PI * F * t)) > 0)
