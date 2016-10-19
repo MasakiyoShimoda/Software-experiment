@@ -10,8 +10,6 @@
 
 int main(int argc, const char * argv[]) {
     double y, t;
-
-    srandom( (unsigned int)time(NULL) );
     
     for (t = 0; t <   t += 1.0 / SAMPLE_RATE) {
         y = A * sin(2.0 * M_PI * F * t);
