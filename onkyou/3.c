@@ -3,7 +3,7 @@
 #include <math.h>
 
 #define F 440 //周波数
-#define LEN 2
+#define LEN 5
 #define A 20000 //振幅
 #define SAMPLE_RATE 44100
 
