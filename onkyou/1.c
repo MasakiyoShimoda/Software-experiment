@@ -15,6 +15,10 @@ int main(int argc, const char * argv[]) {
         y = A * sin(2.0 * M_PI * F * t);
         printf("%d\n%d\n"  ,  (short)y, (short)y);
     }
+    if(y <= 0)
+        y = A;
+    else
+        y = -A;
     
     return 0;
 }
