@@ -145,7 +145,7 @@ void bookSerch(char *operand, Book book[]){
             printf("ID\t\t:%d\n", book[i].id);
             printf("TITLE\t:%s\n", book[i].title);
             printf("AUTHER\t:%s\n", book[i].author);
-            printf("STOCK\t:%d\n", book[i].isLend);
+            printf("STOCK\t:%s\n", (book[i].isLend ? "Out of stock" : "In stock"));
             count++;
         }
     }
