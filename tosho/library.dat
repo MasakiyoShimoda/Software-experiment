@@ -1,0 +1,224 @@
+000001
+#include <stdio.h>
+#include <string.h>
+1
+000002
+#include <stdlib.h>
+#include <errno.h>
+0
+000003
+#include "common.c"
+#define BM_TABLE_SIZE 256
+0
+000004
+void auth();
+void bookSerch(char *, Book[]);
+0
+000005
+void bookLend(char *, Book);
+void bookReturn(char *, Book);
+0
+000006
+void bookRegistration(char *, Book);
+void mainMenu(Book[]);
+0
+000007
+int reSelect(int, int);
+int main(int argc, const char * argv[]) {
+0
+000008
+// insert code here...
+int N = readLine();
+0
+000009
+Book book[500];
+//auth();
+0
+000010
+readData(book, N);
+printData(book, N);
+0
+000011
+//writeData(book, N);
+//mainMenu(book);
+0
+000012
+return 0;
+void auth(){
+0
+000013
+char pass[20];
+char authPass[] = "1234";
+0
+000014
+int count = 0;
+/* Auth Paddword */
+0
+000015
+printf("-----Librarian Program-----\n");
+printf("Librarian's password:");
+0
+000016
+scanf("%s" ,pass);
+while (strcmp(authPass, pass) != 0) {
+0
+000017
+printf("Permission denied, please try again:");
+scanf("%s" ,pass);
+0
+000018
+count++;
+if (count == 2)
+0
+000019
+exit(9);
+void mainMenu(Book book[]){
+0
+000020
+/* Main Menu*/
+char select[40] = {}, operand[30] = {}, command[10] = {};
+0
+000021
+int i, j = 0, flag = 0;
+getchar();
+0
+000022
+while (-1) {
+j = flag = 0;
+0
+000023
+memset(operand, '\0', 30);
+memset(command, '\0', 10);
+0
+000024
+memset(select, '\0', 40);
+printf("[Librarian@MainMenu] >");
+0
+000025
+fgets(select , 256 , stdin);
+for (i = 0;select[i] != '\n'; i++) {
+0
+000026
+if (select[i] == ' ')
+flag = 1;
+0
+000027
+if (flag == 1 && select[i+1] != '\n'){
+operand[j] = select[i + 1];
+0
+000028
+j++;
+} else if (flag == 0)
+0
+000029
+command[i] = select[i];
+flag = strcmp(operand, "");
+0
+000030
+if (strcmp(select, "help\n") == 0) {
+printf("How to use\n");
+0
+000031
+printf("stook OPERAND\n\tSearch stock\n");
+printf("lend OPERAND\n\tLend books in stock\n");
+0
+000032
+printf("return OPERAND\n\tReturn books\n");
+printf("add OPERAND\n\tAdd books in library\n");
+0
+000033
+printf("exit\n");
+} else if (strcmp(command, "stock") == 0){
+0
+000034
+if (flag != -32 && flag != 0)
+bookSerch(operand, book);
+0
+000035
+else
+puts("stock BOOKS...");
+0
+000036
+}else if (strcmp(command, "lend") == 0){
+if (flag != -32 && flag != 0)
+0
+000037
+puts("OK");
+else
+0
+000038
+puts("lend BOOKS...");
+}else if (strcmp(command, "return") == 0){
+0
+000039
+if (flag != -32 && flag != 0)
+puts("OK");
+0
+000040
+else
+puts("return BOOKS...");
+0
+000041
+}else if (strcmp(command, "add") == 0){
+if (flag != -32 && flag != 0)
+0
+000042
+puts("OK");
+else
+0
+000043
+puts("add BOOKS...");
+else if (strcmp(command, "exit\n") == 0)
+0
+000044
+exit(0);
+else
+0
+000045
+printf("Not found.\n");
+int reSelect(int min, int max){
+0
+000046
+int selectNumber;
+scanf("%d", &selectNumber);
+0
+000047
+while(min > selectNumber || selectNumber > max){
+printf("Please try again:");
+0
+000048
+scanf("%d", &selectNumber);
+return selectNumber;
+0
+000049
+void bookSerch(char *operand, Book book[]){
+char *cp = NULL;
+0
+000050
+int i, count = 0;
+printf("[pattern]:%s\n", operand)
+0
+000051
+for (i = 0; i < 40; i++){
+if(bm_search(book[i].title, operand) != NULL){
+0
+000052
+count++;
+printf("ID\t Title\t Auther\t Lend\n");
+0
+000053
+printf("         : text=%s\n", cp);
+void bookLend(char *operand, Book book){
+0
+000054
+void bookReturn(char *operand, Book book){
+void bookRegistration(char *operand, Book book){
+0
+000100
+aaaa
+dddd
+0
+000080
+ssss
+fffff
+0
